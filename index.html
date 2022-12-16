@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,56 +8,136 @@
     <title>Document</title>
 </head>
 <style>
-    .text{
-        color: #578aef;
-        font-size: 20px;
-    }
-    svg{
-        transform: rotate(-90deg);
-        background: linear-gradient(to right, #4ee3e0, #7a75eb);
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-    }
-    img{
-        height: 160px;
+    #bei {
         position: absolute;
-        left: 28px;
-        top: 28px;
+        width: 100%;
+        height: 100%;
+        margin-left: -8px;
+        top: -500px;
+        transition: .6s;
     }
-    circle{
-        stroke: #b6c9d1;
-        stroke-width: 100;
+
+    #bei2 {
+        top: 300px;
+        align-items: center;
+        height: 450px;
+        width: 250px;
+        position: relative;
+        opacity: 0;
+        transition: .7s;
     }
-    .box{
-        transform: rotateY(180deg);
-        width: 200px;
+
+    .box {
+        margin-top: -300px;
+        text-align: center;
+        position: relative;
+    }
+
+    .txt div {
+        font-size: 60px;
+        position: relative;
+        top: -100px;
+    }
+
+    #t1 {
+        transition: .2s;
+        left: -250px;
+    }
+
+    #t2 {
+        transition: .4s;
+        left: 250px;
+    }
+
+    #t3 {
+        transition: .6s;
+        left: -250px;
+    }
+
+    #t4 {
+        transition: .8s;
+        left: 250px;
+    }
+
+    #btn {
+        position: relative;
+        left: 300px;
+        transform: rotate(180deg);
+    }
+
+    #tu {
+        position: absolute;
+        left: 180px;
+        transition: .2s;
     }
 </style>
+
 <body>
+    <!-- <audio id="song" src="img/50 Feet.mp3" autoplay></audio> -->
+    <img id="bei" src="/img/背景.png">
+    <img id="btn" onclick="aa()" src="/img/图标.png">
+    <div id="ab">
+    <img id="tu" onclick="tiao()" src="img/图标2.png">
+</div>
     <div class="box">
-        <svg>
-            <circle id="bn" r="50" cx="100" cy="100"></circle>
-        </svg>
+        <img id="bei2" src="/img/背景2.png" alt="">
+        <div class="txt">
+            <div id="t1">除</div>
+            <div id="t2">夕</div>
+            <div id="t3">快</div>
+            <div id="t4">乐</div>
+        </div>
     </div>
-    <img src="img/123.png" alt="">
-    <div class="text" id="lon">LOADING</div>
-    <div class="text" id="txt">0%</div>
 </body>
 <script>
-    var i=314;
-    var ti=setInterval(function(){
-        i--
-        bn.style.strokeDasharray=i+' 314'
-        if(i<=0)
-        clearInterval(ti)
-        if(i==240)
-        lon.innerHTML='LOADING.'
-        if(i==160)
-        lon.innerHTML='LOADING..'
-        if(i==80)
-        lon.innerHTML='LOADING...'
-        txt.innerHTML=100-parseInt(i/3.14)+'%'
-    },5)
+
+    var time = null
+    var i = 0;
+    var yn = 1
+    var t = 1
+    ti()
+    af()
+    function as() {
+        t1.style.left = 0 + 'px'
+        t2.style.left = 0 + 'px'
+        t3.style.left = 0 + 'px'
+        t4.style.left = 0 + 'px'
+        bei2.style.opacity = 1
+        bei.style.top = 0 + '%';
+    }
+    function aa() {
+        yn++
+        if (yn % 2 == 0) {
+            clearInterval(time)
+            song.pause()
+        }
+        else {
+            song.play()
+            ti()
+        }
+    }
+    function ti() {
+        time = setInterval(function () {
+            i++
+            btn.style.transform = "rotate(" + i + "deg)";
+            as()
+        }, 1)
+    }
+
+    function af() {
+        setInterval(function () {
+            t -= 0.1
+            tu.style.bottom = t + "%";
+            if (t <= 0) t = 8
+        }, 10)
+    }
+
+
+    ab.onmousedown = function () {
+        ab.onmousemove = function () {
+            setTimeout(function () { location.href = 'https://www.bilibili.com/' }, 500)
+        }
+    }
 </script>
+
 </html>
