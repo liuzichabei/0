@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #bei {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin-left: -8px;
+        transition: .6s;
+    }
+    #bei2 {
+        align-items: center;
+        height: 450px;
+        width: 250px;
+        position: relative;
+        opacity: 0;
+        transition: .7s;
+    }
+    #t1,#t3 {
+        left: -250px;
+    }
+    #t2,#t4 {
+        left: 250px;
+    }
+    #tu {
+        position: absolute;
+        transition: .2s;
+        bottom: 100px;
+        margin-left: -10px;
+    }
+    .item {
+        text-align: center;
+    }
+    .item div {
+        font-size: 60px;
+        position: relative;
+    }
+</style>
+<body>
+    <img id="bei" src="img/背景.png">
+    <div style="text-align: right;">
+        <audio id="song" src="img/50 Feet.mp3" autoplay></audio>
+        <img id="btn" onclick="aa()" src="img/图标.png">
+    </div>
+    <div class="item">
+        <img id="bei2" src="img/背景2.png">
+        <div style="margin-top: -400px;">
+            <div id="t1" style="transition: .2s;">除</div>
+            <div id="t2" style="transition: .4s;">夕</div>
+            <div id="t3" style="transition: .6s;">快</div>
+            <div id="t4" style="transition: .8s;">乐</div>
+        </div>
+    </div>
+    <div class="item">
+        <img id="tu" src="img/图标2.png">
+    </div>
+</body>
+<script>
+    var time = null,i = 0,yn = 1,t = 5
+    var arr = [t1, t2, t3, t4]
+    ti()
+    tufu()
+    function aa() {
+        yn++
+        if (yn % 2 == 0) {
+            clearInterval(time)
+            song.pause()
+        } else ti()
+    }
+    function ti() {
+        time = setInterval(() => {
+            i++
+            btn.style.transform = "rotate(" + i + "deg)";
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].style.left = 0 + 'px'
+            }
+            song.play()
+            bei2.style.opacity = 1
+            bei.style.top = 0 + '%';
+        }, 1)
+    }
+    function tufu() {
+        setInterval(() => {
+            t -= 0.1
+            tu.style.bottom = t + "%";
+            if (t <= 4) t = 12
+        }, 10)
+    }
+    tu.onmousedown = () => tu.onmousemove = () =>
+        location.href = 'https://www.baidu.com/'
+</script>
+</html>

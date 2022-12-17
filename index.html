@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .text {
+        color: #578aef;
+        font-size: 20px;
+    }
+
+    svg {
+        transform: rotate(-90deg);
+        background: linear-gradient(to right, #4ee3e0, #7a75eb);
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+    }
+
+    img {
+        height: 160px;
+        position: relative;
+        top: -184px;
+    }
+
+    circle {
+        stroke: #b6c9d1;
+        stroke-width: 100;
+    }
+
+    .box {
+        transform: rotateY(180deg);
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .item {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div class="box">
+        <svg>
+            <circle id="bn" r="50" cx="100" cy="100"></circle>
+        </svg>
+        <img src="img/123.png" alt="">
+    </div>
+    <div class="item">
+        <div class="text" id="lon">LOADING</div>
+        <div class="text" id="txt">0%</div>
+    </div>
+</body>
+<script>
+    var i = 314;
+    var ti = setInterval(() => {
+        i--
+        bn.style.strokeDasharray = i + ' 314'
+        console.log(i);
+        if (i <= 0) {
+            clearInterval(ti)
+            location.href = '特效2.html'
+        }
+        if (i == 240)
+            lon.innerHTML = 'LOADING.'
+        if (i == 160)
+            lon.innerHTML = 'LOADING..'
+        if (i == 80)
+            lon.innerHTML = 'LOADING...'
+        txt.innerHTML = 100 - parseInt(i / 3.14) + '%'
+    }, 10)
+</script>
+
+</html>
