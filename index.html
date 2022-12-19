@@ -8,73 +8,92 @@
     <title>Document</title>
 </head>
 <style>
-    .text {
-        color: #578aef;
-        font-size: 20px;
+    #bei {
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
-
-    svg {
-        transform: rotate(-90deg);
-        background: linear-gradient(to right, #4ee3e0, #7a75eb);
-        border-radius: 50%;
-        width: 200px;
-        height: 200px;
-    }
-
-    img {
-        height: 160px;
+    #bei2 {
+        align-items: center;
+        height: 55%;
+        width: 55%;
         position: relative;
-        top: -184px;
+        animation: bian 1s;
     }
-
-    circle {
-        stroke: #b6c9d1;
-        stroke-width: 100;
+    @keyframes bian {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
     }
-
-    .box {
-        transform: rotateY(180deg);
-        width: 200px;
-        height: 200px;
-        text-align: center;
-        margin: 0 auto;
+    #t1,#t3 {
+        left: -250px;
     }
-
-    .item {
-        text-align: center;
+    #t2,#t4 {
+        left: 250px;
+    }
+    #tu {
+        position: absolute;
+        transition: .1s;
+        bottom: 100px;
+        margin-left: -20px;
+    }
+    .item div {
+        font-size: 60px;
+        position: relative;
+    }
+    #btn {
+        position: relative;
+        left: -20px;
     }
 </style>
-
-<body>
-    <div class="box">
-        <svg>
-            <circle id="bn" r="50" cx="100" cy="100"></circle>
-        </svg>
-        <img src="img/123.png" alt="">
+<body id="aa" style="margin: 0;">
+    <img id="bei" src="img/背景.png">
+    <div style="text-align: right;">
+        <audio id="song" src="img/50 Feet.mp3" autoplay></audio>
+        <img id="btn" onclick="aa()" src="img/图标.png">
     </div>
-    <div class="item">
-        <div class="text" id="lon">LOADING</div>
-        <div class="text" id="txt">0%</div>
+    <div class="item" style="text-align: center;">
+        <img id="bei2" src="img/背景2.png">
+        <div style="margin-top: -400px;">
+            <div id="t1" style="transition: .2s;">除</div>
+            <div id="t2" style="transition: .4s;">夕</div>
+            <div id="t3" style="transition: .6s;">快</div>
+            <div id="t4" style="transition: .8s;">乐</div>
+        </div>
+        <img id="tu" src="img/图标2.png">
     </div>
+    <div style="height: 250px;"></div>
 </body>
 <script>
-    var i = 314;
-    var ti = setInterval(() => {
-        i--
-        bn.style.strokeDasharray = i + ' 314'
-        console.log(i);
-        if (i <= 0) {
-            clearInterval(ti)
-            location.href = '特效2.html'
-        }
-        if (i == 240)
-            lon.innerHTML = 'LOADING.'
-        if (i == 160)
-            lon.innerHTML = 'LOADING..'
-        if (i == 80)
-            lon.innerHTML = 'LOADING...'
-        txt.innerHTML = 100 - parseInt(i / 3.14) + '%'
-    }, 10)
+    var time = null, i = 0, yn = 1, t = 5
+    var arr = [t1, t2, t3, t4]
+    ti()
+    tufu()
+    function aa() {
+        yn++
+        if (yn % 2 == 0) {
+            clearInterval(time)
+            song.pause()
+        } else ti()
+    }
+    function ti() {
+        time = setInterval(() => {
+            i++
+            btn.style.transform = "rotate(" + i + "deg)";
+            for (let i = 0; i < arr.length; i++) {
+                arr[i].style.left = 0 + 'px'
+            }
+            song.play()
+            bei.style.top = 0 + '%';
+            if (window.scrollY >= 1) 
+                location.href = 'http://www.baidu.html'
+        }, 1)
+    }
+    function tufu() {
+        setInterval(() => {
+            t -= 0.1
+            tu.style.bottom = t + "%";
+            if (t <= 4) t = 12
+        }, 10)
+    }
 </script>
-
 </html>
