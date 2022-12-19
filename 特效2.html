@@ -11,22 +11,26 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        margin-left: -8px;
         transition: .6s;
     }
     #bei2 {
         align-items: center;
-        height: 450px;
-        width: 250px;
+        height: 55%;
+        width: 55%;
         position: relative;
-        opacity: 0;
-        transition: .7s;
+        animation: bian 1s;
     }
-    #t1,#t3 {
-        left: -250px;
+    @keyframes bian {
+        0% {opacity: 0;}
+        100% {opacity: 1;}
     }
-    #t2,#t4 {
-        left: 250px;
+    @keyframes a1 {
+        0% {left: -200px;}
+        100% {left: 0px;}
+    }
+    @keyframes a2 {
+        0% {left: 200px;}
+        100% {left: 0px;}
     }
     #tu {
         position: absolute;
@@ -41,58 +45,59 @@
         font-size: 60px;
         position: relative;
     }
+    #btn {
+        position: relative;
+        left: -20px;
+    }
 </style>
-<body>
+<body id="aa" style="margin: 0;">
     <img id="bei" src="img/背景.png">
     <div style="text-align: right;">
-        <audio id="song" src="img/50 Feet.mp3" autoplay></audio>
+        <audio id="song" src="img/50 Feet.mp3"></audio>
         <img id="btn" onclick="aa()" src="img/图标.png">
     </div>
     <div class="item">
         <img id="bei2" src="img/背景2.png">
         <div style="margin-top: -400px;">
-            <div id="t1" style="transition: .2s;">除</div>
-            <div id="t2" style="transition: .4s;">夕</div>
-            <div id="t3" style="transition: .6s;">快</div>
-            <div id="t4" style="transition: .8s;">乐</div>
+            <div id="t1" style="animation:a1 .4s;">除</div>
+            <div id="t2" style="animation:a2 .6s;">夕</div>
+            <div id="t3" style="animation:a1 .7s;">快</div>
+            <div id="t4" style="animation:a2 .8s;">乐</div>
         </div>
-    </div>
-    <div class="item">
         <img id="tu" src="img/图标2.png">
     </div>
+    <div style="height: 250px;"></div>
 </body>
 <script>
-    var time = null,i = 0,yn = 1,t = 5
-    var arr = [t1, t2, t3, t4]
-    ti()
+    var time = null, i = 0,flag=true, t = 5
     tufu()
     function aa() {
-        yn++
-        if (yn % 2 == 0) {
+        flag=!flag
+        if (flag) {
             clearInterval(time)
             song.pause()
-        } else ti()
+        } else {
+            ti()
+            song.play()
+        }
     }
     function ti() {
         time = setInterval(() => {
             i++
             btn.style.transform = "rotate(" + i + "deg)";
-            for (let i = 0; i < arr.length; i++) {
-                arr[i].style.left = 0 + 'px'
-            }
-            song.play()
-            bei2.style.opacity = 1
             bei.style.top = 0 + '%';
-        }, 1)
+        }, 1)  
     }
     function tufu() {
-        setInterval(() => {
+        var tit= setInterval(() => {
+            if (window.scrollY >= 1) {
+                clearInterval(tit)
+                clearInterval(time)
+                location.href = 'https://www.baidu.com/'}
             t -= 0.1
             tu.style.bottom = t + "%";
             if (t <= 4) t = 12
         }, 10)
     }
-    tu.onmousedown = () => tu.onmousemove = () =>
-        location.href = 'https://www.baidu.com/'
 </script>
 </html>
